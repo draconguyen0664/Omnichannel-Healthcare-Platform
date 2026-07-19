@@ -23,6 +23,7 @@
 **/playwright-report/
 **/test-results/
 **/coverage/
+**/*.log
 
 # Flutter / Dart
 **/.dart_tool/

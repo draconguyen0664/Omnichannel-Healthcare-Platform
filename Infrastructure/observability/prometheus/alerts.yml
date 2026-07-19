@@ -1,0 +1,10 @@
+groups:
+  - name: omni-health
+    rules:
+      - alert: TargetDown
+        expr: up == 0
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Prometheus target {{ $labels.instance }} is down"

@@ -1,0 +1,8 @@
+services:
+  k6:
+    image: grafana/k6:1.4.2
+    environment:
+      BASE_URL: ${BASE_URL:-http://host.docker.internal:8080}
+    volumes:
+      - ./smoke.js:/scripts/smoke.js:ro
+    command: run /scripts/smoke.js

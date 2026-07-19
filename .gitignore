@@ -1,0 +1,42 @@
+# Agent and editor state
+/.agents/
+**/.git-backup-*/
+/.claude/
+/.codex/
+/.vscode/
+**/.claude/
+
+# Environment and secrets (examples remain tracked)
+**/.env
+**/.env.*
+!**/.env.example
+**/*.pem
+**/*.key
+**/google-services.json
+**/GoogleService-Info.plist
+
+# JavaScript / Expo / Next.js
+**/node_modules/
+**/.next/
+**/.expo/
+**/storybook-static/
+**/playwright-report/
+**/test-results/
+**/coverage/
+
+# Flutter / Dart
+**/.dart_tool/
+**/build/
+**/.flutter-plugins
+**/.flutter-plugins-dependencies
+
+# Java / Maven
+**/target/
+
+# Go
+**/bin/
+**/coverage.out
+
+# OS files
+.DS_Store
+Thumbs.db

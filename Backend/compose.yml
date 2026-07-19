@@ -1,0 +1,32 @@
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: omni_health
+      MYSQL_USER: omni
+      MYSQL_PASSWORD: omni_secret
+      MYSQL_ROOT_PASSWORD: root_secret
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  redis:
+    image: redis:7.4-alpine
+    ports:
+      - "6379:6379"
+  rabbitmq:
+    image: rabbitmq:4-management-alpine
+    environment:
+      RABBITMQ_DEFAULT_USER: omni
+      RABBITMQ_DEFAULT_PASS: omni_secret
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+volumes:
+  mysql_data:

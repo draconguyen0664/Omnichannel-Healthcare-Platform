@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: omni-health
+spec:
+  replicas: 2
+  selector:
+    matchLabels: { app: backend }
+  template:
+    metadata:
+      labels: { app: backend }
+    spec:
+      containers:
+        - name: backend
+          image: ghcr.io/example/omni-health-backend:latest
+          ports: [{ containerPort: 8080 }]
+          envFrom:
+            - configMapRef: { name: omni-health-config }
+            - secretRef: { name: omni-health-secrets }
+          readinessProbe:
+            httpGet: { path: /actuator/health/readiness, port: 8080 }
+            initialDelaySeconds: 20
+          livenessProbe:
+            httpGet: { path: /actuator/health/liveness, port: 8080 }
+            initialDelaySeconds: 30
+          resources:
+            requests: { cpu: 250m, memory: 512Mi }
+            limits: { cpu: "1", memory: 1Gi }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: omni-health
+spec:
+  selector: { app: backend }
+  ports: [{ port: 8080, targetPort: 8080 }]

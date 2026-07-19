@@ -1,0 +1,6 @@
+appId: com.omnihealth.patient
+---
+- launchApp
+- assertVisible: "Chăm sóc sức khỏe trong tầm tay"
+- tapOn: "Tạo hồ sơ bệnh nhân"
+- assertVisible: "Thông tin bệnh nhân"
